@@ -1,43 +1,39 @@
-import { useCallback, useState, useMemo } from "react"
-import { ChildArea } from "./ChildArea";
-import { InlineStyle } from "./components/InlineStyle";
-import { CssModules } from "./components/CssModules";
-import { StyledJsx } from "./components/StyledJsx";
-import { StyledComponents } from "./components/StyledComnponents";
-import { Emotion } from "./components/Emotion";
+import { Home } from "./Home";
+import { Page1 } from "./Page1";
+import { Page1DetailA } from "./Page1DetailA";
+import { Page1DetailB } from "./Page1DetailB";
+import { Page2 } from "./Page2";
+import { createBrowserRouter, RouterProvider } from "react-router-dom"
+import { Root } from "./Root";
+import { Page1Index } from "./Page1Index";
+import ErrorPage from "./ErrorPage";
 
 export default function App() {
   console.log('App');
-  const [count, setCount] = useState(0);
-  const [text, setText] = useState('');
-  const [open, setOpen] = useState(false);
-
-  const onChangeText = (e) => setText(e.target.value);
-  const onClickOpen = () => setOpen(!open);
-  const onClickClose = useCallback(() => (setOpen(false)), [])
-
-  const x = useMemo(() => 1+3, []);
-  console.log(x);
-
-  const onClickCountUp = () => {
-    setCount(count + 1)
-  }
+  const router = createBrowserRouter([
+    {
+      path: '/',
+      element: <Root />,
+      errorElement: <ErrorPage />,
+      children: [
+        { index: true, element: <Home /> },
+        { path: 'Home', element: <Home />},
+        {
+          path: 'page1',
+          element: <Page1 />,
+          children: [
+            { path: 'detailA', element: <Page1DetailA />},
+            { path: ':detailB', element: <Page1DetailB />},
+          ]
+        },
+        { path: "page2", element: <Page2 /> },
+      ]
+    },
+  ]);
 
   return (
-    <div className="App">
-      <p>{count}</p>
-      <button onClick={onClickCountUp}>カウントアップ</button>
-      <br />
-      <input value={text} onChange={onChangeText} />
-      <br />
-      <button onClick={onClickOpen}>表示</button>
-      <ChildArea open={open} onClickClose={onClickClose}/>
-
-      <InlineStyle/>
-      <CssModules/>
-      <StyledJsx />
-      <StyledComponents />
-      <Emotion />
-    </div>
+    <>
+      <RouterProvider router={router} />
+    </>
   );
 }
