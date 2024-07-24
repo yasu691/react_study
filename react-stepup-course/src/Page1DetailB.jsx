@@ -8,24 +8,34 @@ export const Page1DetailB = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    const sampleProducts = {
-        id: 1,
-        name: "water bottle",
-        price: "$2",
-        description: "sample text"
-    };
+    const sampleProducts = [
+        {
+            id: 1,
+            name: "water bottle",
+            price: "2",
+            description: "sample text1"
+        },
+        {
+            id: 2,
+            name: "cheeze",
+            price: "3",
+            description: "sample text2"
+        },
+        {
+            id: 3,
+            name: "Docker",
+            price: "4",
+            description: "sample text3"
+        },
+    ];
 
     useEffect(() => {
         // 実際のアプリケーションでは、ここでAPIリクエストを行います
-        const fetchProduct = async () => {
+        const fetchProduct = () => {
             try {
                 setLoading(true);
-                // 仮のAPI呼び出しをシミュレート
-                const response = await fetch(`https://api.example.com/products/${productId}`);
-                if (!response.ok) {
-                    throw new Error('Product not found');
-                }
-                const data = await response.json();
+                const productIndex = parseInt(productId, 10) - 1;
+                const data = sampleProducts[productIndex];
                 setProduct(data);
             } catch (err) {
                 setError(err.message);
@@ -46,7 +56,7 @@ export const Page1DetailB = () => {
             <h2>{product.name}</h2>
             <p>Price: ${product.price}</p>
             <p>Description: {product.description}</p>
-            <button onClick={() => navigate('/products')}>Back to Products</button>
+            <button onClick={() => navigate('/page1')}>Back to Products</button>
         </div>
     );
 };

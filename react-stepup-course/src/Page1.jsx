@@ -12,10 +12,6 @@ export const Page1 = () => {
                     <Link to="/page1/DetailA">Detail A</Link>
                     <p>Brief description of what Detail A contains.</p>
                 </li>
-                <li>
-                    <Link to="/page1/DetailB">Detail B</Link>
-                    <p>Brief description of what Detail B contains.</p>
-                </li>
             </ul>
             <Outlet />
         </div>

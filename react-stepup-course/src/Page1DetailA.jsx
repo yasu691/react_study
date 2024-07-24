@@ -13,7 +13,7 @@ export const Page1DetailA = () => {
             <ul>
                 {products.map((product) => (
                     <li key={product.id}>
-                        <Link to={`/products/${product.id}`}>{product.name}</Link>
+                        <Link to={`/page1/${product.id}`}>{product.name}</Link>
                     </li>
                 ))}
             </ul>

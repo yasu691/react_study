@@ -7,6 +7,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom"
 import { Root } from "./Root";
 import { Page1Index } from "./Page1Index";
 import ErrorPage from "./ErrorPage";
+import { UrlParameter } from "./UrlParameter";
 
 export default function App() {
   console.log('App');
@@ -23,10 +24,16 @@ export default function App() {
           element: <Page1 />,
           children: [
             { path: 'detailA', element: <Page1DetailA />},
-            { path: ':detailB', element: <Page1DetailB />},
+            { path: ':productId', element: <Page1DetailB />},
           ]
         },
-        { path: "page2", element: <Page2 /> },
+        {
+          path: "page2",
+          element: <Page2 />,
+          children: [
+            { path: ':id', element: <UrlParameter />},
+          ]
+        },
       ]
     },
   ]);
