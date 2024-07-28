@@ -56,7 +56,7 @@ export const Page1DetailB = () => {
             <h2>{product.name}</h2>
             <p>Price: ${product.price}</p>
             <p>Description: {product.description}</p>
-            <button onClick={() => navigate('/page1')}>Back to Products</button>
+            <button onClick={() => navigate('/page1/DetailA')}>Back to Products</button>
         </div>
     );
 };

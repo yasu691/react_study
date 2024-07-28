@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 export const Page1DetailA = () => {
     const products = [
@@ -6,6 +6,9 @@ export const Page1DetailA = () => {
         { id: 2, name: 'Product 2' },
         { id: 3, name: 'Product 3' },
     ];
+
+    const { state } = useLocation();
+    console.log(state);
 
     return (
         <div>
