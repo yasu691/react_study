@@ -4,6 +4,7 @@ import HeaderOnly from '../templates/HeaderOnly'
 import SearchInput from '../molecules/SearchInput'
 import UserCard from '../organism/user/UserCard'
 
+// 長さ10の配列を作って、インデックスを取り出してそれをイテラブルとして、map関数を渡す
 const users = [...Array(10).keys()].map((val) => {
     return {
         id: val,
