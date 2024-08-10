@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import styled from 'styled-components'
 import HeaderOnly from '../templates/HeaderOnly'
 import SearchInput from '../molecules/SearchInput'
 import UserCard from '../organism/user/UserCard'
+import SecondaryButton from '../atoms/button/SecondaryButton'
+import { UserContext } from '../../providers/UserProvider'
 
 // 長さ10の配列を作って、インデックスを取り出してそれをイテラブルとして、map関数を渡す
 const users = [...Array(10).keys()].map((val) => {
@@ -20,11 +22,16 @@ const users = [...Array(10).keys()].map((val) => {
 })
 
 const Users = () => {
+    const { userInfo, setUserInfo } = useContext(UserContext);
+    const onClickSwitch = () => {
+        setUserInfo({ isAdmin: !userInfo?.isAdmin ?? false });
+    };
     return (
         <HeaderOnly>
             <SContainer>
                 <h2>ユーザー一覧</h2>
                 <SearchInput />
+                <SecondaryButton onClick={onClickSwitch}>切り替え</SecondaryButton>
                 <SUserArea>
                     {users.map((user) => (
                         <UserCard key={users.id} user={user} />
