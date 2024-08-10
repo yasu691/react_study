@@ -1,11 +1,12 @@
-import React, { memo, useContext } from 'react'
+import React, { memo } from 'react'
 import styled from 'styled-components';
-import { UserContext } from '../../../providers/UserProvider';
+import { useRecoilValue } from 'recoil';
+import { userState } from '../../../store/userState';
 
 const UserIconWithName = memo((props) => {
     console.log('UserIconWithName');
     const { image, name } = props;
-    const { userInfo } = useContext(UserContext);
+    const userInfo = useRecoilValue(userState);
     // ?. はoptional chaining演算子、参照した要素がnullishの場合にundefinedを返却する
     // ?? はヌル合体演算子、左辺の値がnullishの場合は右辺の値を、それ以外の場合は左辺の値を返却する
     const isAdmin = userInfo?.isAdmin ?? false;

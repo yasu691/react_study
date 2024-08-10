@@ -5,6 +5,8 @@ import SearchInput from '../molecules/SearchInput'
 import UserCard from '../organism/user/UserCard'
 import SecondaryButton from '../atoms/button/SecondaryButton'
 import { UserContext } from '../../providers/UserProvider'
+import { useRecoilState } from 'recoil'
+import { userState } from '../../store/userState'
 
 // 長さ10の配列を作って、インデックスを取り出してそれをイテラブルとして、map関数を渡す
 const users = [...Array(10).keys()].map((val) => {
@@ -22,7 +24,8 @@ const users = [...Array(10).keys()].map((val) => {
 })
 
 const Users = () => {
-    const { userInfo, setUserInfo } = useContext(UserContext);
+    // const { userInfo, setUserInfo } = useContext(UserContext);
+    const [userInfo, setUserInfo] = useRecoilState(userState);
     const onClickSwitch = () => {
         setUserInfo({ isAdmin: !userInfo?.isAdmin ?? false });
     };
@@ -31,6 +34,7 @@ const Users = () => {
             <SContainer>
                 <h2>ユーザー一覧</h2>
                 <SearchInput />
+                <br />
                 <SecondaryButton onClick={onClickSwitch}>切り替え</SecondaryButton>
                 <SUserArea>
                     {users.map((user) => (

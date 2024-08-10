@@ -5,6 +5,7 @@ import ErrorPage from './ErrorPage';
 import Top from './components/pages/Top';
 import Users from './components/pages/Users';
 import { UserProvider } from './providers/UserProvider';
+import { RecoilRoot } from 'recoil';
 
 function App() {
   const router = createBrowserRouter([
@@ -24,9 +25,11 @@ function App() {
   ])
 
   return (
-    <UserProvider>
-      <RouterProvider router={router} />
-    </UserProvider>
+    <RecoilRoot>
+      <UserProvider>
+        <RouterProvider router={router} />
+      </UserProvider>
+    </RecoilRoot>
   )
 }
 
